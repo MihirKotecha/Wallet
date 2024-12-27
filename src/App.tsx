@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
 import Home from './pages/Home'
 import ImportSeed from './pages/ImportSeed'
+import GenerateSeed from './pages/GenerateSeed'
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/import' element={<ImportSeed/>} />
+          <Route path='/generate' element={<GenerateSeed/>} />
         </Routes>
       </BrowserRouter>
     </>
