@@ -1,9 +1,11 @@
 import { generateMnemonic } from "bip39";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 const GenerateSeed = () => {
 
     const [seed, setSeed] = useState<string[]>(Array(12).fill(''));
+    const navigate = useNavigate();
 
     const generateSeed = async() => {
         const mn = await generateMnemonic();
@@ -14,6 +16,11 @@ const GenerateSeed = () => {
     useEffect(() => {
         generateSeed();
     }, []);
+
+    const handlelick = () => {
+        localStorage.setItem('seed', seed.join(' '));
+        navigate('/wallet');
+    }
 
     return (
         <div className="bg-black h-screen w-screen flex justify-center items-center">
@@ -29,7 +36,7 @@ const GenerateSeed = () => {
                             ))
                         }
                         <h2 className="col-span-3 text-red-600 font-bold text-3xl mt-8">Make sure to save your seed phrase!!!</h2>
-                        <button className="w-3/4 col-span-3  p-2 mt-8 bg-red-600 text-white rounded-full text-3xl">Next</button>
+                        <button className="w-3/4 col-span-3  p-2 mt-8 bg-red-600 text-white rounded-full text-3xl" onClick={handlelick}>Next</button>
                     </div>
                 </div>
             </div>
